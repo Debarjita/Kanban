@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.kanban-board {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #ff4b8d, #ff9d4b);
+  color: #000000;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+}
+
+.team-info span {
+  margin-right: 10px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.board-columns {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.add-card {
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.label {
+  background-color: rgba(129, 213, 237, 0.6);
+  color: #333;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+</style>
+<body>
+    <div class="kanban-board">
+        <div class="board-header">
+          <h2>Kanban Board</h2>
+          <div class="team-info">
+            <span>Debby's routine</span>
+            <span class="user-avatar">
+                            </span>
+          </div>
+        </div>
+        <div class="board-columns">
+          <div class="column">
+            <h3>Backlog</h3>
+            <div class="card">Data Analytics podcast</div>
+            <div class="card">PR Firm outreach</div>
+            <div class="card">List of vendors for banquets</div>
+            <div class="card">Google Adwords best practices</div>
+            <div class="add-card">+ Add another card</div>
+          </div>
+          
+          <div class="column">
+            <h3>Up Next</h3>
+            <div class="card">
+              <span class="label">Remarked</span><br><br>
+              Android App new landing page
+            </div>
+            <div class="card">Analytics</div>
+            <div class="card">
+              <span class="label">Remarked</span>
+              <span class="label">Partners</span><br><br>
+              Branding guidelines
+            </div>
+            <div class="add-card">+ Add another card</div>
+          </div>
+          <div class="column">
+            <h3>In Progress</h3>
+            <div class="card">
+              <span class="label">Government</span>
+              <span class="label">Planning</span><br><br>
+              Going live with server deployment
+            </div>
+            <div class="card">Google Adwords list of referrers</div>
+            <div class="card">Q3 Webinar Content Planning</div>
+            <div class="card">
+              <span class="label">Demand Marketing</span><br><br>
+              Email campaign - February
+            </div>
+            <div class="card">
+              <img src="C:\Users\Debarjita\Desktop\k-board\Screenshot 2024-04-25 215603.png" alt="IT Solutions Page">
+              IT Solutions page
+              <span class="badge">1</span>
+            </div>
+            <div class="add-card">+ Add another card</div>
+          </div>
+          <div class="column">
+            <h3>On Hold</h3>
+            <div class="card">
+              <span class="label">Partners</span><br><br>
+              CSS Rules
+            </div>
+            <div class="card">
+              <span class="label">Happiness</span><br><br>
+              Retail order
+            </div>
+            <div class="card">Mobile UI reboot</div>
+            <div class="card">
+              <img src="C:\Users\Debarjita\Desktop\k-board\Screenshot 2024-04-25 215703.png" alt="Google Analytics Data">
+              Google analytics data - Q1
+              <span class="badge">1</span>
+            </div>
+            <div class="add-card">+ Add another card</div>
+          </div>
+        </div>
+      </div>
+      <script>
+        const addCardBtns = document.querySelectorAll('.add-card');
+        const newCardInput = document.getElementById('new-card-input');
+        const addCardBtn = document.getElementById('add-card-btn');
+      
+        addCardBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            newCardInput.value = '';
+            newCardInput.focus();
+          });
+        });
+      
+        addCardBtn.addEventListener('click', () => {
+          const newCardTitle = newCardInput.value.trim();
+          if (newCardTitle) {
+            const activeColumn = document.activeElement.closest('.column');
+            if (activeColumn) {
+              const addCardDiv = activeColumn.querySelector('.add-card');
+              if (addCardDiv) {
+                const newCard = document.createElement('div');
+                newCard.classList.add('card');
+                newCard.textContent = newCardTitle;
+                activeColumn.insertBefore(newCard, addCardDiv);
+              }
+            }
+            newCardInput.value = '';
+          }
+        });
+      </script>
+     
+</body>
+
+</html>
